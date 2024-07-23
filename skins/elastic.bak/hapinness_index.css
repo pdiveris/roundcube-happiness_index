@@ -1,0 +1,8 @@
+#taskmenu a.button-happiness {
+    background-color: aqua;
+    height: 32px;
+}
+
+#taskmenu a.button-happiness:before {
+    content:"\f00d";
+}

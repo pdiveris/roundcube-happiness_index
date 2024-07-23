@@ -29,8 +29,8 @@ class happiness_index extends rcube_plugin
             'type'       => 'link',
             'label'      => 'happiness_index.happiness',
             'href'       => 'javascript: getAndSetHappiness();',
-            'class'      => 'button-cloud',
-            'classsel'   => 'button-cloud button-selected',
+            'class'      => 'button-happiness',
+            'classsel'   => 'button-happiness button-selected',
             'innerclass' => 'button-inner'
         ), 'toolbar');
 
