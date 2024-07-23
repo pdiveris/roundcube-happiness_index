@@ -1,0 +1,34 @@
+{
+  "name": "pdiveris/happines_index",
+  "type": "roundcube-plugin",
+  "description": "Adds a happiness index header value to the email as selected from a drodown.",
+  "keywords": ["mail", "labels", "tags"],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/pdiveris/roundcube-happiness_index",
+  "authors": [
+    {
+      "name": "Petros Diveris",
+      "homepage": "https://github.com/pdiveris",
+      "role": "Developer"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://plugins.roundcube.net"
+    },
+    {
+      "type": "vcs",
+      "url": "git://github.com/pdiveris/roundcube-happiness_index.git"
+    }
+  ],
+  "require": {
+    "roundcube/plugin-installer": ">=0.1.10",
+    "php": ">=5.6.18"
+  },
+  "extra": {
+    "roundcube": {
+      "min-version": "1.4.0"
+    }
+  }
+}
