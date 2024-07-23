@@ -30,5 +30,10 @@
     "roundcube": {
       "min-version": "1.4.0"
     }
+  },
+  "config": {
+    "allow-plugins": {
+      "roundcube/plugin-installer": true
+    }
   }
 }
