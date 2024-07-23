@@ -1,35 +1,60 @@
 <?php
 /**
-* Fancy Emoticons
+* Happiness Index
 *
-* Sample plugin to replace emoticons in plain text message body with real icons
+* Sample plugin add a happiness_index header value to the email based on a selection from a dropdown list
 *
 * @version 1.0
-* @author Thomas Bruederli
-* @url http://roundcube.net/plugins/fancy_emoticons
+* @author Petros Diveris
+* @url http://github.com/pdiveris/happiness_index
 */
-class fancy_emoticons extends rcube_plugin
+class happiness_index extends rcube_plugin
 {
-    public $task = 'mail';
-    private $map;
+    private $happiness_index_var;
 
-    function init()
+    /**
+     * Plugin initialization
+     */
+    public function init()
     {
-        $this->add_hook('message_part_after', array($this, 'replace'));
-
-        $this->map = array(
-            ':)'  => html::img(array('src' => $this->urlbase.'media/smile.gif', 'alt' => ':)')),
-            ':-)' => html::img(array('src' => $this->urlbase.'media/smile.gif', 'alt' => ':-)')),
-            ':('  => html::img(array('src' => $this->urlbase.'media/cry.gif', 'alt' => ':(')),
-            ':-(' => html::img(array('src' => $this->urlbase.'media/cry.gif', 'alt' => ':-(')),
-        );
+        $this->add_hook('message_before_send', [$this, 'message_headers']);
     }
 
-    function replace($args)
+    /**
+     * 'message_before_send' hook handler
+     *
+     * @param array $args Hook arguments
+     *
+     * @return array Modified hook arguments
+     */
+    public function message_headers($args)
     {
-        if ($args['type'] == 'plain')
-            return array('body' => strtr($args['body'], $this->map));
+        $this->load_config();
+        $this->happiness_index_var = rcube::get_instance()->config->get('happiness_index_var', '');
 
-        return null;
+        $rcube = rcube::get_instance();
+
+
+        $this->include_stylesheet($this->local_skin_path() . '/cloud_button.css');
+        $this->add_texts('localization/');
+
+        $this->add_button(array(
+            'type'       => 'link',
+            'label'      => 'happiness_index.happiness',
+            'href'       => $this->happiness_index_var,
+            'target'     => '_blank',
+            'class'      => 'happiness_index',
+            'classsel'   => 'happiness_index button-selected',
+            'innerclass' => 'button-inner'
+        ), 'taskbar');
+
+        // additional email headers
+        $additional_headers = [
+            'User-Agent' => 'My-Very-Own-Webmail'
+        ];
+
+        $args['message']->headers($additional_headers, true);
+
+        return $args;
     }
 }

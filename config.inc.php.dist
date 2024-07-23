@@ -1,0 +1,9 @@
+<?php
+##
+## Happiness Index configuration file
+##
+
+// URL Sime Custom value
+$config['happiness_index_var'] = 'https://gitgub.com/pdiveris/';
+
+?>
