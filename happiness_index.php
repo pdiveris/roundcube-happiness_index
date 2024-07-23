@@ -21,13 +21,14 @@ class happiness_index extends rcube_plugin
         $this->some_var = rcube::get_instance()->config->get('some_var', '');
 
         $this->include_stylesheet($this->local_skin_path() . '/happiness_index.css');
+        $this->include_script('happiness_index.js');
+
         $this->add_texts('localization/');
 
         $this->add_button(array(
             'type'       => 'link',
             'label'      => 'happiness_index.happiness',
-            'href'       => $this->some_var,
-            'target'     => '_blank',
+            'href'       => 'javascript: getAndSetHappiness();',
             'class'      => 'button-cloud',
             'classsel'   => 'button-cloud button-selected',
             'innerclass' => 'button-inner'
