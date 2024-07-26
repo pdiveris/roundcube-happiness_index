@@ -1,11 +1,3 @@
-#toolbar-menu .aaabutton-happiness:before {
-    content:"\f00d" !important;
-}
-
-#rcmbtn100:before {
-    content:"\f00d" !important;
-}
-
-#rcmbtn100 {
-    font-size: 0.6px !important;
+#toolbar-menu .button-happiness:before {
+    content:"\f118" !important;
 }

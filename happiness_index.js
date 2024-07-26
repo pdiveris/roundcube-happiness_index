@@ -8,12 +8,6 @@ function getAndSetHappiness()
 }
 
 
-//    content:"\f00d" !important;
-
-// $('.button-happiness').append('<style>:before{content:"\\f00d" !important;}</style>');
-
-// $('#rcmbtn100').attr('value', 'Save');
-
 /*
 Code below left as a point of discussion - I couldn't get it to work to my satisfaction
 using the standard way illustrated here as it would trigger the "unsaved message" modal
