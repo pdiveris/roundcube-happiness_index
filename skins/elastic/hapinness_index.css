@@ -1,8 +1,3 @@
-#toolbar-menu .button-happiness {
-    background-color: aqua;
-    height: 32px;
-}
-
 #toolbar-menu .button-happiness:before {
-    content:"\f00d";
+    content:"\f00d" !important;
 }
