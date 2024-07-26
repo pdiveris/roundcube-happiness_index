@@ -12,6 +12,8 @@ class happiness_index extends rcube_plugin
 {
     private $some_var;
 
+    private $happiness = 1;
+
     /**
      * Plugin initialization
      */
@@ -45,7 +47,7 @@ class happiness_index extends rcube_plugin
     {
         // additional email headers
         $additional_headers = [
-            'User-Agent' => 'My-Very-Own-Webmail'
+            'Happiness-Index' => $this->happiness
         ];
     }
 }
