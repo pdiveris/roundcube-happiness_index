@@ -27,14 +27,19 @@ class happiness_index extends rcube_plugin
 
         $this->add_texts('localization/');
 
-        $this->add_button(array(
-            'type'       => 'link',
-            'label'      => 'happiness_index.happiness',
-            'href'       => 'javascript: getAndSetHappiness();',
-            'class'      => 'button-happiness',
-            'classsel'   => 'button-happiness button-selected',
-            'innerclass' => 'button-inner'
-        ), 'toolbar');
+        $this->add_button([
+            'type'          => 'link',
+            'label'         => 'happiness_index.happiness',
+            'href'          => 'javascript: getAndSetHappiness();',
+            'class'         => 'button-happiness',
+            'classsel'      => 'button-happiness button-selected',
+            'innerclass'    => 'button-inner',
+
+            'aria-haspopup' => true,
+            'aria-expanded' => false,
+            // 'data-popup'    => 'happiness-index',
+            'aria-owns'     => 'happiness_index',
+        ], 'toolbar');
 
         $this->add_hook('message_before_send', [$this, 'message_headers']);
     }

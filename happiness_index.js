@@ -1,9 +1,47 @@
+var happy;
+
+let list = '<ul id="happiness_list">';
+list += '<li><a class="hindex" href="#">1</li>';
+list += '<li><a class="hindex" href="#">2</li>';
+list += '<li><a class="hindex" href="#">3</li>';
+list += '<li><a class="hindex" href="#">4</li>';
+list += '<li><a class="hindex" href="#">5</li>';
+list += '</ul>';
+
+happy = $('<div id="happiness_window"><h3 class="popover-header dark-mode happiness_window">Please choose</h3>'+list+'</div>');
+happy.attr('id', 'happiness_index');
+happy.attr('style', 'position: absolute; top: 10px; left: 0px;');
+happy.attr('class', 'dark-mode');
+happy.attr('z-index', '0');
+
+$(document).on('click','body *',function() {
+    if ($(this).attr('class') === 'hindex') {
+        console.log("hindex clicked "+$(this).text());
+    }
+    $('#happiness_index').hide();
+
+});
+
+$(function() {
+    let button = $('.button-happiness')
+    let offset = button.offset();
+    happy
+        .css({
+            left: offset.left,
+            top: offset.top + button.innerHeight()
+        });
+
+    happy.appendTo('#layout-content');
+    happy.hide();
+});
+
 /**
  * Show a popup with the happiness levels
  * Store it in localStorage or session or somewhere when clicked
  */
 function getAndSetHappiness()
 {
+    happy.show();
     console.log("Happiness index button clicked....");
 }
 
