@@ -2,7 +2,7 @@
 /**
 * Happiness Index
 *
-* Sample plugin add a happiness_index header value to the email based on a selection from a dropdown list
+* Add a happiness_index header value to the email based on a selection from a dropdown list
 *
 * @version 1.0
 * @author Petros Diveris
@@ -10,9 +10,7 @@
 */
 class happiness_index extends rcube_plugin
 {
-    private $some_var;
-
-    private $happiness = 1;
+    private $some_var = 'Just a placeholder';
 
     /**
      * Plugin initialization
@@ -20,7 +18,9 @@ class happiness_index extends rcube_plugin
     public function init()
     {
         $this->load_config();
-        $this->some_var = rcube::get_instance()->config->get('some_var', '');
+
+        $this->happiness_index = rcube::get_instance()->config->get('some_var', '');
+        $this->register_action('plugin.setHappiness', array($this, 'setHappiness'));
 
         $this->include_stylesheet($this->local_skin_path() . '/happiness_index.css');
         $this->include_script('happiness_index.js');
@@ -37,7 +37,6 @@ class happiness_index extends rcube_plugin
 
             'aria-haspopup' => true,
             'aria-expanded' => false,
-            // 'data-popup'    => 'happiness-index',
             'aria-owns'     => 'happiness_index',
         ], 'toolbar');
 
@@ -52,7 +51,22 @@ class happiness_index extends rcube_plugin
     {
         // additional email headers
         $additional_headers = [
-            'Happiness-Index' => $this->happiness
+            'Happiness-Index' => $_SESSION['happiness_index']
         ];
+
+        $args['message']->headers($additional_headers, true);
+    }
+
+    /**
+     * @return void
+     */
+    public function setHappiness() {
+        $happiness = (int)trim(rcube_utils::get_input_value('_happiness', rcube_utils::INPUT_GPC));
+
+        if ($happiness < 1) {
+            $happiness = 1;
+        }
+
+        $_SESSION['happiness_index'] = $happiness;
     }
 }

@@ -1,6 +1,6 @@
 var happy;
 
-let list = '<ul id="happiness_list">';
+let list = '<ul class="listing popover" id="happiness_list">';
 list += '<li><a class="hindex" href="#">1</li>';
 list += '<li><a class="hindex" href="#">2</li>';
 list += '<li><a class="hindex" href="#">3</li>';
@@ -8,15 +8,18 @@ list += '<li><a class="hindex" href="#">4</li>';
 list += '<li><a class="hindex" href="#">5</li>';
 list += '</ul>';
 
-happy = $('<div id="happiness_window"><h3 class="popover-header dark-mode happiness_window">Please choose</h3>'+list+'</div>');
+happy = $('<div class="popover" id="happiness_window"><h3 class="popover-header"></h3>'+list+'</div>');
 happy.attr('id', 'happiness_index');
 happy.attr('style', 'position: absolute; top: 10px; left: 0px;');
 happy.attr('class', 'dark-mode');
-happy.attr('z-index', '0');
+happy.attr('z-index', '5');
 
 $(document).on('click','body *',function() {
+    hIndex = $(this).text();
+
     if ($(this).attr('class') === 'hindex') {
-        console.log("hindex clicked "+$(this).text());
+        console.log("hindex clicked "+hIndex);
+        rcmail.http_post('plugin.setHappiness', '_happiness=' +hIndex, true);
     }
     $('#happiness_index').hide();
 

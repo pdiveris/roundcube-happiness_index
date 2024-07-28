@@ -1,10 +1,12 @@
 #toolbar-menu .button-happiness:before {
     content:"\f118" !important;
 }
-.happiness_window {
-    background-color: black !important;
+
+#happiness_list {
+    min-width: 75px !important;
+    list-style-type: none;
 }
 
-#xhappiness_index {
-    background-color: azure !important;
+#happiness_index a:visited a:hover {
+    text-decoration: none;
 }

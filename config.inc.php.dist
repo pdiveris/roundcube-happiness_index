@@ -3,7 +3,7 @@
 ## Happiness Index configuration file
 ##
 
-// URL Sime Custom value
-$config['happiness_index_var'] = 'https://gitgub.com/pdiveris/';
+// Some config value / placeholder for testing
+$config['some_var'] = 1;
 
 ?>
